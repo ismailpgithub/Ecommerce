@@ -2,6 +2,7 @@ import { LogIn, ShoppingCart, User } from 'lucide-react';
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu';
+import { ModeToggle } from './mode-toggle';
 
 const Navbar = () => {
 
@@ -51,6 +52,7 @@ const Navbar = () => {
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </li>
+                <ModeToggle/>
             </ul>
         </div>
     </div>

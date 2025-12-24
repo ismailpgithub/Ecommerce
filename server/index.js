@@ -7,6 +7,7 @@ import cartRoutes from "./routes/cart.js";
 import addressRoutes from "./routes/address.js";
 import orderRoutes from "./routes/order.js";
 import cloudinary from "cloudinary";
+import cors from "cors";
 
 dotenv.config();
 cloudinary.v2.config({
@@ -17,6 +18,7 @@ cloudinary.v2.config({
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 app.use("/api", userRoutes);
 app.use("/api", productRoutes);
