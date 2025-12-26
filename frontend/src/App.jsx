@@ -5,23 +5,32 @@ import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
 import { UserData } from './context/userContext.jsx'
 import Verify from './pages/Verify.jsx'
+import Loading from './components/Loading.jsx'
+import Products from './pages/Products.jsx'
 
 
 const App = () => {
 
-  const {} = UserData()
+  const {isAuth, loading} = UserData()
 
   return (
     <>
-    <BrowserRouter>
-    <Navbar/>
-      <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/login' element={<Login/>}/>
-        <Route path='/verify' element={<Verify/>}/>
-      </Routes>
-      <Footer/>
-    </BrowserRouter>   
+      {
+        loading ? (
+          <Loading/>
+        ) : (
+          <BrowserRouter>
+            <Navbar/>
+            <Routes>
+              <Route path='/' element={<Home/>}/>
+              <Route path='/products' element={<Products/>}/>
+              <Route path='/login' element={isAuth ? <Home/> : <Login/>}/>
+              <Route path='/verify' element={isAuth ? <Home/> : <Verify/>}/>
+            </Routes>
+            <Footer/>
+          </BrowserRouter> 
+        )
+      }  
     </>
   )
 }
