@@ -6,7 +6,7 @@ const Hero = ({navigate}) => {
   return (
     <div className='relative h-[calc(100vh-100px)] bg-cover bg-center'   style={{
         backgroundImage:`
-            linear-gradient(rgba(0,0,0,.2), rgba(0,0,0,.2)), 
+            linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
             url('/bg-image.jpg')`,
         paddingTop: "100px"
     }}>
