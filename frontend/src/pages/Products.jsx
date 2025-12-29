@@ -1,6 +1,7 @@
 import Loading from '@/components/Loading';
 import ProductCard from '@/components/ProductCard';
 import { Button } from '@/components/ui/button';
+import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
 import { ProductData } from '@/context/ProductContext';
 import { Filter, X } from 'lucide-react';
 import React, { useState } from 'react'
@@ -16,6 +17,15 @@ const Products = () => {
     setSearch('')
     setPage(1)
   }
+
+  const nextPage = ()=>{
+    setPage(page + 1)
+  }
+
+  const prevPage = ()=>{
+    setPage(page - 1)
+  }
+
   return (
     <div className='flex flex-col md:flex-row h-full'>
       <div className={`fixed inset-y-0 left-0 z-50 md:z-40 w-64 bg-white dark:bg-gray-800 shadow-lg transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0 ${show? "translate-x-0" : "-translate-x-full"}`}>
@@ -72,6 +82,28 @@ const Products = () => {
               </div>
             )
           }
+
+          <div className='mt-2 mb-3'>
+            <Pagination>
+              <PaginationContent>
+                {
+                  page !== 1  && (
+                    <PaginationItem className='cursor-pointer' onClick={prevPage}>
+                      <PaginationPrevious href="#" />
+                    </PaginationItem>
+                  )
+                }
+
+                {
+                  page !== totalPages  && (
+                    <PaginationItem className='cursor-pointer' onClick={nextPage}>
+                      <PaginationNext href="#" />
+                    </PaginationItem>
+                  )
+                }
+              </PaginationContent>
+            </Pagination>
+          </div>
       </div>
     </div>
   )

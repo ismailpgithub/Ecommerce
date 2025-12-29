@@ -3,14 +3,15 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu';
 import { ModeToggle } from './mode-toggle';
+import { UserData } from '@/context/userContext';
 
 const Navbar = () => {
 
     const navigate = useNavigate();
-    const isAuth = true
+    const { isAuth, logoutUser} = UserData()
 
     const logoutHandler = ()=>{
-        alert("Logged Out")
+        logoutUser(navigate)
     }
   return (
     <div className='z-50 sticky top-0 bg-background/50 border-b backdrop-blur'>
@@ -34,17 +35,17 @@ const Navbar = () => {
                             {
                                 isAuth ? (
                                     <>
-                                        <DropdownMenuItem onClick={()=>navigate('/login')}>
-                                            Login
-                                        </DropdownMenuItem>
-                                    </>
-                                ):(
-                                    <>
                                         <DropdownMenuItem onClick={()=>navigate('/order')}>
                                             Your Order
                                         </DropdownMenuItem>
                                         <DropdownMenuItem onClick={logoutHandler}>
                                             Logout
+                                        </DropdownMenuItem>
+                                    </>
+                                ) : (
+                                    <>
+                                        <DropdownMenuItem onClick={()=>navigate('/login')}>
+                                            Login
                                         </DropdownMenuItem>
                                     </>
                                 )
