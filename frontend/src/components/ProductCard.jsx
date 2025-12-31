@@ -9,8 +9,8 @@ const ProductCard = ({product, latest}) => {
     <div>
       {
         product && (
-            <div className='w-[300px] mx-auto shadow-md rounded-lg overflow-hidden border-gray-200'>
-              <Link to={`/products/${product._id}`}>
+            <div className='w-[300px] mx-auto shadow-md rounded-lg overflow-hidden border border-gray-200'>
+              <Link to={`/product/${product._id}`}>
                   <div className='relative h-[300px] bg-gray-100 flex justify-center items-center'>
                     <img src={product.images[0].url} alt="Product" className='max-w-full object-contain hover:scale-125'/>
                     {
@@ -29,7 +29,7 @@ const ProductCard = ({product, latest}) => {
                     <p className='text-sm mt-1 truncate'>{product.description.slice(0,30)}</p>
                     <p className='text-sm mt-1 truncate'>₹{product.price}</p>
                     <div className='flex items-center justify-center mt-4'>
-                      <Button onClick={()=>navigate('/product/${product._id}')}>View Product</Button>
+                      <Button onClick={()=>navigate(`/product/${product._id}`)}>View Product</Button>
                     </div>
               </div>
             </div>

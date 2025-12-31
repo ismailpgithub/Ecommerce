@@ -8,6 +8,8 @@ import Verify from './pages/Verify.jsx'
 import Loading from './components/Loading.jsx'
 import Products from './pages/Products.jsx'
 import Cart from './pages/Cart.jsx'
+import NotFound from './pages/NotFound.jsx'
+import ProductPage from './pages/ProductPage.jsx'
 
 
 const App = () => {
@@ -25,7 +27,9 @@ const App = () => {
             <Routes>
               <Route path='/' element={<Home/>}/>
               <Route path='/products' element={<Products/>}/>
+              <Route path='/product/:id' element={<ProductPage/>}/>
               <Route path='/cart' element={isAuth ? <Cart/> : <Login/>}/>
+              <Route path='*' element={<NotFound/>}/>
               <Route path='/login' element={isAuth ? <Home/> : <Login/>}/>
               <Route path='/verify' element={isAuth ? <Home/> : <Verify/>}/>
             </Routes>

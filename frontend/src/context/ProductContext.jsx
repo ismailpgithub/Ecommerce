@@ -14,6 +14,9 @@ export const ProductProvider = ({children}) =>{
     const [category, setCategory] = useState('')
     const [price, setPrice] = useState('')
     const [categories, setCategories] = useState([])
+    const [product, setProduct] = useState([])
+    const [relatedProduct, setRelatedProduct] = useState([])
+
 
     async function fetchProducts() {
         setLoading(true)
@@ -26,7 +29,20 @@ export const ProductProvider = ({children}) =>{
             setTotalPages(data.totalPages)
             setLoading(false)
         } catch (error) {
-            console.log(error)
+            console.log(error) 
+            setLoading(false)
+        } 
+    }
+
+    async function fetchProduct(id) {
+        setLoading(true)
+        try {
+            const {data} = await axios.get(`${server}/api/products/${id}`)
+            setProduct(data.product)
+            setRelatedProduct(data.relatedProduct)
+            setLoading(false)
+        } catch (error) {
+            console.log(error) 
             setLoading(false)
         }
     }
@@ -35,7 +51,7 @@ export const ProductProvider = ({children}) =>{
         fetchProducts()
     },[search, category, page, price])
 
-    return <ProductContext.Provider value={{loading, products, newProduct, search, setSearch, categories, category, setCategory, totalPages, price, setPrice, page, setPage }}>
+    return <ProductContext.Provider value={{loading, products, newProduct, search, setSearch, categories, category, setCategory, totalPages, price, setPrice, page, setPage, fetchProduct, product, relatedProduct }}>
         {children}
     </ProductContext.Provider>
 }
