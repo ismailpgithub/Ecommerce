@@ -11,6 +11,7 @@ import Cart from './pages/Cart.jsx'
 import NotFound from './pages/NotFound.jsx'
 import ProductPage from './pages/ProductPage.jsx'
 import Checkout from './pages/Checkout.jsx'
+import Payment from './pages/Payment.jsx'
 
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
               <Route path='/product/:id' element={<ProductPage/>}/>
               <Route path='/cart' element={isAuth ? <Cart/> : <Login/>}/>
               <Route path='/checkout' element={isAuth ? <Checkout/> : <Login/>}/>
+              <Route path='/payments/:id' element={isAuth ? <Payment/> : <Login/>}/>
               <Route path='*' element={<NotFound/>}/>
               <Route path='/login' element={isAuth ? <Home/> : <Login/>}/>
               <Route path='/verify' element={isAuth ? <Home/> : <Verify/>}/>

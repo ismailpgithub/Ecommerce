@@ -6,7 +6,9 @@ import {
   getMyorder,
   getStats,
   newOrderCod,
+  newOrderOnline,
   updateStatus,
+  verifyPayment,
 } from "../controller/order.js";
 
 const router = express.Router();
@@ -17,5 +19,7 @@ router.get("/order/admin/all", isAuth, getAllOrdersAdmin);
 router.get("/order/:id", isAuth, getMyorder);
 router.post("/order/:id", isAuth, updateStatus);
 router.get("/stats", isAuth, getStats);
+router.post("/order/new/online", isAuth, newOrderOnline);
+router.post("/order/verify/payments", isAuth, verifyPayment);
 
 export default router;
