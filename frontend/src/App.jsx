@@ -12,6 +12,7 @@ import NotFound from './pages/NotFound.jsx'
 import ProductPage from './pages/ProductPage.jsx'
 import Checkout from './pages/Checkout.jsx'
 import Payment from './pages/Payment.jsx'
+import OrderProcessing from './pages/OrderProcessing.jsx'
 
 
 const App = () => {
@@ -33,6 +34,7 @@ const App = () => {
               <Route path='/cart' element={isAuth ? <Cart/> : <Login/>}/>
               <Route path='/checkout' element={isAuth ? <Checkout/> : <Login/>}/>
               <Route path='/payments/:id' element={isAuth ? <Payment/> : <Login/>}/>
+              <Route path='/ordersuccess' element={isAuth ? <OrderProcessing  /> : <Login/>}/>
               <Route path='*' element={<NotFound/>}/>
               <Route path='/login' element={isAuth ? <Home/> : <Login/>}/>
               <Route path='/verify' element={isAuth ? <Home/> : <Verify/>}/>

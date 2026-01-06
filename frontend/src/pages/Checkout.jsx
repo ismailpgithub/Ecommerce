@@ -94,7 +94,7 @@ const Checkout = () => {
                         <Button variant='destructive' onClick={()=>deleteHandler(e._id)}><Trash/></Button>
                         </h3>
                         <p className='text-sm'>Phone - {e.phone}</p>
-                        <Link to={`/payment/${e._id}`}>
+                        <Link to={`/payments/${e._id}`}>
                             <Button variant='outline'>Use Address</Button>
                         </Link>
                     </div>

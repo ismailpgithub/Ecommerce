@@ -143,12 +143,12 @@ export const getStats = TryCatch(async (req, res) => {
   });
 });
 
-const stripe = new Stripe(process.env.STRIPE_PUBLISHABLE_KEY);
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export const newOrderOnline = async (req, res) => {
   try {
     const { method, phone, address } = req.body;
-    const cart = await Cart.find({ user: req.user._id }).populate("products");
+    const cart = await Cart.find({ user: req.user._id }).populate("product");
 
     if (!cart.length) {
       return res.status(400).json({
@@ -174,10 +174,10 @@ export const newOrderOnline = async (req, res) => {
     }));
 
     const session = await stripe.checkout.sessions.create({
-      payment_method_type: ["card"],
-      line_item: lineItem,
+      payment_method_types: ["card"],
+      line_items: lineItem,
       mode: "payment",
-      success_url: `${process.env.FRONTEND_URL}/ordersuccess?session_id=${CHECKOUT_SESSION_ID}`,
+      success_url: `${process.env.FRONTEND_URL}/ordersuccess?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.FRONTEND_URL}/cart`,
       metadata: {
         userId: req.user._id.toString(),
@@ -200,14 +200,16 @@ export const newOrderOnline = async (req, res) => {
 };
 
 export const verifyPayment = async (req, res) => {
-  const { sessionsId } = req.body;
+  const { sessionId } = req.body;
+  console.log(sessionId);
 
   try {
-    const session = await stripe.checkout.sessions.retrieve(sessionsId);
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
+    console.log(session);
 
     const { userId, method, phone, address, subTotal } = session.metadata;
 
-    const cart = await Cart.find({ user: userId }).populate("products");
+    const cart = await Cart.find({ user: userId }).populate("product");
 
     if (cart.length === 0) {
       return res.status(400).json({
@@ -224,7 +226,7 @@ export const verifyPayment = async (req, res) => {
       };
     });
 
-    const existingOrder = await Order.findOne({ paymentInfo: sessionsId });
+    const existingOrder = await Order.findOne({ paymentInfo: sessionId });
 
     if (!existingOrder) {
       const order = await Order.create({
@@ -238,7 +240,7 @@ export const verifyPayment = async (req, res) => {
         address,
         subTotal,
         paidAt: new Date(),
-        paymentInfo: sessionsId,
+        paymentInfo: sessionId,
       });
 
       for (let i of order.items) {

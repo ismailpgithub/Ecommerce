@@ -21,8 +21,7 @@ export const getAllAddress = TryCatch(async (req, res) => {
 });
 
 export const getSingleAddress = TryCatch(async (req, res) => {
-  console.log(req.params.id);
-  const address = await Address.find({
+  const address = await Address.findById({
     _id: req.params.id,
   });
   res.json(address);
