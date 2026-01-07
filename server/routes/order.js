@@ -12,6 +12,7 @@ import {
 } from "../controller/order.js";
 
 const router = express.Router();
+console.log("inside the order routes");
 
 router.post("/order/new/cod", isAuth, newOrderCod);
 router.get("/order/all", isAuth, getAllOrders);

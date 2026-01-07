@@ -24,6 +24,7 @@ app.use("/api", userRoutes);
 app.use("/api", productRoutes);
 app.use("/api", cartRoutes);
 app.use("/api", addressRoutes);
+console.log("inside the index js");
 app.use("/api", orderRoutes);
 
 const port = process.env.port || 3000;
