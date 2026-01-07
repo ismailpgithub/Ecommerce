@@ -53,7 +53,7 @@ const Verify = () => {
             <CardHeader>
                 <CardTitle>Verify User Otp</CardTitle>
                 <CardDescription>
-                    If you didn't get otp in your mail inbox then you can check your otp in your mail spam section
+                    If you didn't get otp in your mail inbox then you can check your otp in your mail spam sections
                 </CardDescription>
             </CardHeader>
             <CardContent className='space-y-2'>

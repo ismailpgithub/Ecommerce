@@ -33,15 +33,12 @@ const OrderProcessing = () => {
             }
 
             setLoading(true)
-            console.log("before the server")
             try {
                 const {data} = await axios.post(`${server}/order/verify/payment`,{sessionId}, {
                     headers:{
                         token: Cookies.get("token")
                     }
                 })
-
-                console.log('after the server')
 
                 if(data.success){
                     toast.success("Order Place successfully ")
