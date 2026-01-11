@@ -205,7 +205,7 @@ export const verifyPayment = async (req, res) => {
 
   try {
     const session = await stripe.checkout.sessions.retrieve(sessionId);
-    console.log(session);
+    // console.log(session);
 
     const { userId, method, phone, address, subTotal } = session.metadata;
 

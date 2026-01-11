@@ -42,7 +42,7 @@ export const UserProvider = ({children}) =>{
              navigate("/")
              setBtnLoading(false)
              setIsAuth(true)
-             setUser(data.user)
+             setUser(data)
              Cookies.set("token", data.token, {
                 expires: 15,
                 secure: true,
@@ -64,7 +64,7 @@ export const UserProvider = ({children}) =>{
             })
 
             setIsAuth(true)
-            setUser(data.user)
+            setUser(data)
             setLoading(false)
         } catch (error) {
             console.log(error)

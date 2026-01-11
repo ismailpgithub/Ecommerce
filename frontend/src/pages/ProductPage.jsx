@@ -5,11 +5,10 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { CartData } from '@/context/CartContext';
 import { ProductData } from '@/context/ProductContext'
 import { UserData } from '@/context/userContext';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 
 const ProductPage = () => {
-
 
   const {fetchProduct, product, relatedProduct, loading} = ProductData();
   const {addToCart} = CartData()
@@ -25,6 +24,11 @@ const ProductPage = () => {
   const addToCartHandler = ()=>{
     addToCart(id)
   }
+
+  const [show, setShow] = useState(false)
+  const [title, setTitle] = useState("")
+  const [about, setAbout] = useState('')
+
 
   return (
     <div>

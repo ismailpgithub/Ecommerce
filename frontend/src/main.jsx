@@ -7,9 +7,29 @@ import { UserProvider } from './context/userContext'
 import { ProductProvider } from './context/ProductContext'
 import { CartProvider } from './context/CartContext'
 
-export const server = "http://localhost:5000";
+export const server = "http://localhost:5000"
+export const categories = [ 
+  "smartphone", 
+  "laptop",
+  "watch",
+  "shoes",
+  "Electronics",
+  "Fashion and Apparel",
+  "Food",
+  "Beverages",
+  "DIY and Hardware",
+  "Furniture",
+  "Media",
+  "Beauty and Personal Care",
+  "Toys and Hobbies",
+  "Home and Lifestyle",
+  "Pet Supplies",
+  "Health and Wellness"
+];
 
-createRoot(document.getElementById('root')).render(
+const root = createRoot(document.getElementById('root'))
+
+root.render(
   <StrictMode>
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <UserProvider>
@@ -20,5 +40,10 @@ createRoot(document.getElementById('root')).render(
         </ProductProvider>
       </UserProvider>
     </ThemeProvider>
-  </StrictMode>,
+  </StrictMode>
 )
+
+// Accept HMR updates
+if (import.meta.hot) {
+  import.meta.hot.accept()
+}

@@ -13,6 +13,9 @@ import ProductPage from './pages/ProductPage.jsx'
 import Checkout from './pages/Checkout.jsx'
 import Payment from './pages/Payment.jsx'
 import OrderProcessing from './pages/OrderProcessing.jsx'
+import Orders from './pages/Orders.jsx'
+import OrderPage from './pages/OrderPage.jsx'
+import AdminDashboard from './pages/AdminDashboard.jsx'
 
 
 const App = () => {
@@ -33,6 +36,9 @@ const App = () => {
               <Route path='/product/:id' element={<ProductPage/>}/>
               <Route path='/cart' element={isAuth ? <Cart/> : <Login/>}/>
               <Route path='/checkout' element={isAuth ? <Checkout/> : <Login/>}/>
+              <Route path='/orders' element={isAuth ? <Orders/> : <Login/>}/>
+              <Route path='/order/:id' element={isAuth ? <OrderPage/> : <Login/>}/>
+              <Route path='/admin/dashboard' element={isAuth ? <AdminDashboard/> : <Login/>}/>
               <Route path='/payments/:id' element={isAuth ? <Payment/> : <Login/>}/>
               <Route path='/ordersuccess' element={isAuth ? <OrderProcessing  /> : <Login/>}/>
               <Route path='*' element={<NotFound/>}/>

@@ -9,13 +9,14 @@ import { CartData } from '@/context/CartContext';
 const Navbar = () => {
 
     const navigate = useNavigate();
-    const { isAuth, logoutUser} = UserData()
+    const { isAuth, logoutUser, user} = UserData()
 
     const {totalItem, setTotalItem} = CartData()
 
     const logoutHandler = ()=>{
         logoutUser(navigate, setTotalItem)
     }
+    
   return (
     <div className='z-50 sticky top-0 bg-background/50 border-b backdrop-blur'>
         <div className='container mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between'>
@@ -40,9 +41,14 @@ const Navbar = () => {
                             {
                                 isAuth ? (
                                     <>
-                                        <DropdownMenuItem onClick={()=>navigate('/order')}>
+                                        <DropdownMenuItem onClick={()=>navigate('/orders')}>
                                             Your Order
                                         </DropdownMenuItem>
+
+                                         {user && user.role === 'admin' && <DropdownMenuItem onClick={()=>navigate('/admin/dashboard')}>
+                                            Dashboard
+                                        </DropdownMenuItem>}
+
                                         <DropdownMenuItem onClick={logoutHandler}>
                                             Logout
                                         </DropdownMenuItem>

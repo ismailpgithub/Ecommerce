@@ -27,15 +27,14 @@ const OrderProcessing = () => {
                 return navigate('/cart')
             }
 
-            // console.log(sessionId) 
             if(paymentVerified){
                 return 
             }
 
             setLoading(true)
             try {
-                const {data} = await axios.post(`${server}/order/verify/payment`,{sessionId}, {
-                    headers:{
+                const {data} = await axios.post(`${server}/api/order/verify/payment`,{sessionId}, {
+                    headers: {
                         token: Cookies.get("token")
                     }
                 })
@@ -50,9 +49,12 @@ const OrderProcessing = () => {
                     }, 10000)
                 }
             } catch (error) {
-                toast.error("Payment verification failed. Please try again")
-                navigate('/cart')
-                console.log(error)
+                // toast.error("Payment verification failed. Please try again")
+                // navigate('/cart')
+                // console.log(error)
+                console.log("Backend error:", error.response?.data);
+                toast.error(error.response?.data?.message || "Payment verification failed. Please try again");
+                navigate('/cart');
             }
         }
 
